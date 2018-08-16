@@ -1,0 +1,15 @@
+cd /C/Temp/ProgramasC#/
+
+trae todo
+git clone https://github.com/osvaldo-olmos/introcsharp.git
+
+actualiza
+git pull https://github.com/osvaldo-olmos/introcsharp.git
+
+
+.gitignore
+obj
+bin
+vs
+.vs
+.vscode
