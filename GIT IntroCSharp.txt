@@ -1,10 +1,12 @@
 cd /C/Temp/ProgramasC#/
 
-trae todo
-git clone https://github.com/osvaldo-olmos/introcsharp.git
+subir todo
+git remote add origin https://github.com/PDSDotNet/ProgramasCS.git	
+git push origin master				
 
-actualiza
-git pull https://github.com/osvaldo-olmos/introcsharp.git
+
+Sube modificaciones agregadas con add
+git push origin master
 
 
 .gitignore

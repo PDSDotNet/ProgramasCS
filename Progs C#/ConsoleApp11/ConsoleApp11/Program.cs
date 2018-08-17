@@ -15,8 +15,28 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp11
 {
+
+
     class Program
     {
+        //Calcula la cantidad de ceros a mostrar para un número real mayor que -1 
+        //y menor que 1, manteniendo n decimales útiles 
+        static int CantidadDeDecimalesUtiles(double num, int decimalesUtiles = 2)
+        {
+            int cantDeCeros = 0;
+            if (num < 1)
+            {
+                if (num >= 0)
+                    cantDeCeros = Convert.ToInt32(Math.Log10(1 / num));
+                else
+                    if (num > -1)
+                    cantDeCeros = Convert.ToInt32(Math.Log10(-1 / num));
+            }
+
+            return cantDeCeros + decimalesUtiles;
+        }
+
+
         static void Main(string[] args)
         {
             double cuadrado = 0, num, pot;
@@ -58,19 +78,7 @@ namespace ConsoleApp11
                                 cuadrado = Math.Pow(num, pot);
                                 
                                 //Calcula la cantidad de ceros a mostrar
-                                int aux = 0;
-                                if (cuadrado < 1)
-                                {
-                                    if(cuadrado >= 0)
-                                        aux = Convert.ToInt32(Math.Log10(1 / cuadrado)) + 2;
-                                    else
-                                        if(cuadrado > -1)
-                                            aux = Convert.ToInt32(Math.Log10(-1 / cuadrado)) + 2;
-                                        else
-                                            aux = 2;
-                                }
-                                else
-                                    aux = 2;
+                                int aux = CantidadDeDecimalesUtiles(cuadrado);
 
                                 Console.WriteLine($"{num} elevado al {pot} es { Math.Round(cuadrado, aux)}\n\n");
                             }
