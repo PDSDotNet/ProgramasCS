@@ -14,10 +14,21 @@ namespace ConsoleApp1
             Int32 myNumero = 666;
             //Console.WriteLine($"{args}" );
             Console.WriteLine("\nHola mundo cruel, MiNumero: " + myNumero);
+
+            Console.BackgroundColor = ConsoleColor.Red;
             Console.WriteLine("\nHola mundo cruel, MiNumero: {0}", myNumero);
+
+            Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine($"\nHola mundo cruel, MiNumero: {myNumero}");
-            Console.WriteLine("\n\nPresione ENTER para terminar");
-            Console.ReadLine();
+
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"\nHola mundo cruel, MiNumero: {myNumero}");
+
+            Console.ResetColor();
+
+            Console.WriteLine("\n\n\n\nPresione ENTER para terminar");
+            Console.ReadKey();
         }
     }
 }
