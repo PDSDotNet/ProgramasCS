@@ -49,7 +49,7 @@ namespace ConsoleApp15
             {
                 for (int j = 0; j < y; j++)
                 {
-                    aux = string.Format("{0,3:D}", mat[i, j]);
+                    aux = string.Format("{0,5:D}", mat[i, j]);
                     if (j == 0)
                         if (y == 1)
                             Console.Write($"| {aux}| ");

@@ -26,7 +26,7 @@ namespace ConsoleApp13
             {
                 Console.WriteLine("----------------------------------------------------------------");
                 Console.WriteLine("Ejecute ConsoleApp13 seguido de una cadena a la que se le cuentam los caracteres");
-                Console.WriteLine("\n Ej: ConsolaApp9 El virrey robo una cabra.");
+                Console.WriteLine("\n Ej: ConsolaApp13 El virrey robo una cabra.");
                 Console.WriteLine("----------------------------------------------------------------");
             }
             else

@@ -1,4 +1,4 @@
-cd /C/Temp/ProgramasC#/
+cd /C/Temp/ProgramasCS/
 
 subir todo
 git remote add origin https://github.com/PDSDotNet/ProgramasCS.git	
