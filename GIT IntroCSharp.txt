@@ -1,4 +1,6 @@
 cd /C/Temp/ProgramasCS/
+git config --global user.name “PDSDotNet”
+git config --global user.email “pabloscuteri@gmail.com”
 
 subir todo
 git remote add origin https://github.com/PDSDotNet/ProgramasCS.git	
