@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using AspNetCoreToDo.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using AspNetCoreToDo.Service;
+
 
 namespace AspNetCoreToDo
 {
@@ -41,6 +43,8 @@ namespace AspNetCoreToDo
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSingleton<IToDoItemService, FakeToDoItemService>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
