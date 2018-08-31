@@ -36,6 +36,7 @@ namespace AspNetCoreToDo
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //"Metodo landa" inicializacion de la base de datos
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -43,6 +44,8 @@ namespace AspNetCoreToDo
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+
             services.AddSingleton<IToDoItemService, FakeToDoItemService>();
             
         }
