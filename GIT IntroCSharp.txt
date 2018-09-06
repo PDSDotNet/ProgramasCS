@@ -2,13 +2,28 @@ cd /C/Temp/ProgramasCS/
 git config --global user.name “PDSDotNet”
 git config --global user.email “pabloscuteri@gmail.com”
 
+
+
+---------------------------------------------------------------------
 subir todo
 git remote add origin https://github.com/PDSDotNet/ProgramasCS.git	
 git push origin master				
 
 
 Sube modificaciones agregadas con add
+
 git push origin master
+
+
+--------------------------------------------------------------------
+
+Baja de la nuve la diferencia entre el repositorio local y la nube. 
+git pull https://github.com/PDSDotNet/ProgramasCS.git	
+
+Baja de la nuve todo el repositorio. 
+git clone https://github.com/PDSDotNet/ProgramasCS.git
+
+---------------------------------------------------------------------
 
 
 .gitignore

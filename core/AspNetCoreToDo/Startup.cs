@@ -37,16 +37,18 @@ namespace AspNetCoreToDo
             });
 
             //"Metodo landa" inicializacion de la base de datos
+            //Usamos la base de datos SQL Lite
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlite( Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
 
-            services.AddSingleton<IToDoItemService, FakeToDoItemService>();
+            //services.AddSingleton<IToDoItemService, FakeToDoItemService>();
+            services.AddScoped< IToDoItemService, ToDoItemService>();
             
         }
 
