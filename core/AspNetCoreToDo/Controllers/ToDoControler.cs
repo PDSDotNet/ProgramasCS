@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+
+using Microsoft.AspNetCore.Authorization;
+
 using AspNetCoreToDo.Service;
 using AspNetCoreToDo.Models;
 
+
 namespace AspNetCoreToDo.Controllers
 {
+    [Authorize] 
     public class ToDoController: Controller
     {
         // Actions go here
@@ -16,8 +21,6 @@ namespace AspNetCoreToDo.Controllers
         public ToDoController(IToDoItemService todoItemService)
         {
             _todoItemService = todoItemService;
-           
-
         }
 
             
@@ -30,7 +33,6 @@ namespace AspNetCoreToDo.Controllers
                     Items = items
                 };
                 return View(model); 
-
         }
 
 
