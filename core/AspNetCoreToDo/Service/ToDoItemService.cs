@@ -19,17 +19,26 @@ namespace AspNetCoreToDo.Service
             _context = context;
         }
 
-        public async Task <ToDoItem[]> GetIncompleteItemsAsync( ApplicationUser user)
+
+
+
+
+
+        public async Task <ToDoItem[]> GetIncompleteItemsAsync()
         {
-            return await _context.Items.Where( x=> x.IsDone == false && x.UserId == user.Id) .ToArrayAsync();
+            return await _context.Items.Where( x=> x.IsDone == false) .ToArrayAsync();
         }
 
-        public async Task<bool> AddItemAsync(ToDoItem newItem, ApplicationUser user)
+
+
+
+
+
+        public async Task<bool> AddItemAsync(ToDoItem newItem)
         {
             newItem.Id = Guid.NewGuid();
             newItem.IsDone = false;
             newItem.DueAt = DateTimeOffset.Now.AddDays(3);
-            newItem.UserId = user.Id;
 
             _context.Items.Add(newItem);
 
@@ -39,14 +48,16 @@ namespace AspNetCoreToDo.Service
         }
 
 
-         public async Task<bool> MarkDoneAsync(Guid id, ApplicationUser user)
+
+
+
+
+        public async Task<bool> MarkDoneAsync(Guid id)
         {
-            var item = await _context.Items
-                .Where(x => x.Id == id && x.UserId == user.Id)
-                .SingleOrDefaultAsync();
+            var item = await _context.Items.Where(x => x.Id == id).SingleOrDefaultAsync();
             
             if (item == null) 
-            return false;
+                return false;
             
             item.IsDone = true;
             var saveResult = await _context.SaveChangesAsync();

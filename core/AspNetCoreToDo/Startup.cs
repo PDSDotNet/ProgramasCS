@@ -13,7 +13,7 @@ using AspNetCoreToDo.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using AspNetCoreToDo.Service;
-using AspNetCoreToDo.Models;
+
 
 namespace AspNetCoreToDo
 {
@@ -29,7 +29,6 @@ namespace AspNetCoreToDo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -42,7 +41,7 @@ namespace AspNetCoreToDo
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite( Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<ApplicationUser>()
+            services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
