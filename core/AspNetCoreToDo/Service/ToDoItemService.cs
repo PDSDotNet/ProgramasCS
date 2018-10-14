@@ -24,9 +24,9 @@ namespace AspNetCoreToDo.Service
 
 
 
-        public async Task <ToDoItem[]> GetIncompleteItemsAsync()
+        public async Task <ToDoItem[]> GetIncompleteItemsAsync(ApplicationUser user)
         {
-            return await _context.Items.Where( x=> x.IsDone == false) .ToArrayAsync();
+            return await _context.Items.Where( x=> x.IsDone == false && x.UserId == user.Id) .ToArrayAsync();
         }
 
 
@@ -34,11 +34,12 @@ namespace AspNetCoreToDo.Service
 
 
 
-        public async Task<bool> AddItemAsync(ToDoItem newItem)
+        public async Task<bool> AddItemAsync(ToDoItem newItem, ApplicationUser user)
         {
             newItem.Id = Guid.NewGuid();
             newItem.IsDone = false;
             newItem.DueAt = DateTimeOffset.Now.AddDays(3);
+            newItem.UserId= user.Id;
 
             _context.Items.Add(newItem);
 
@@ -52,9 +53,9 @@ namespace AspNetCoreToDo.Service
 
 
 
-        public async Task<bool> MarkDoneAsync(Guid id)
+        public async Task<bool> MarkDoneAsync(Guid id, ApplicationUser user)
         {
-            var item = await _context.Items.Where(x => x.Id == id).SingleOrDefaultAsync();
+            var item = await _context.Items.Where(x => x.Id == id && x.UserId == user.Id).SingleOrDefaultAsync();
             
             if (item == null) 
                 return false;
