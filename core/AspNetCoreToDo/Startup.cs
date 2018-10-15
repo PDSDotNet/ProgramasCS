@@ -43,14 +43,16 @@ namespace AspNetCoreToDo
                 options.UseSqlite( Configuration.GetConnectionString("DefaultConnection")));
 
             //services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddDefaultIdentity<ApplicationUser>().AddEntityFrameworkStores<ApplicationDbContext>();
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
+            //services.AddDefaultIdentity<ApplicationUser>().AddEntityFrameworkStores<ApplicationDbContext>();  //2018-10-04 Fix TodoItem security
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders().AddDefaultUI();
 
             //services.AddSingleton<IToDoItemService, FakeToDoItemService>();
             services.AddScoped< IToDoItemService, ToDoItemService>();
-            
+
+            //services.AddAuthentication();
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
