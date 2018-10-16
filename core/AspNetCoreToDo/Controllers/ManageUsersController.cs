@@ -11,12 +11,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AspNetCoreToDo.Controllers
 {
-    [Authorize(Roles="Administrator")]
-    public class ManageUsersControler: Controller
+    [Authorize(Roles= Constants.AdministratorRole)]
+    public class ManageUsersController: Controller
     {
         private readonly UserManager< ApplicationUser> _userManager;
 
-        public ManageUsersControler( UserManager< ApplicationUser> userManager)
+        public ManageUsersController( UserManager< ApplicationUser> userManager)
         {
             _userManager = userManager;
         }
