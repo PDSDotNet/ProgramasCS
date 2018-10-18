@@ -1,0 +1,55 @@
+using System;
+using System.Threading.Tasks;
+
+using AspNetCoreToDo.Data;
+using AspNetCoreToDo.Models;
+using AspNetCoreToDo.Service;
+using Microsoft.EntityFrameworkCore;
+using Xunit;
+
+
+namespace AspNetCoreToDo.UnitTests
+{
+    public class ToDoItemServiceShould
+    {
+        [Fact]
+        public async Task AddNewItemAsIncompleteWhitDueDate()
+        {
+            //crea la base de datos en memoria.
+            var options = new DbContextOptionsBuilder< ApplicationDbContext>()
+                .UseInMemoryDatabase( databaseName: "Test_AddNewItem").Options;
+
+             //Crea el contexto necesario para realizar el test.
+            //En este caso ae crea el servicio ToDoItemService y el usuario ficticio
+            //y con esto se agrega un item a la base de datos.
+            using(var context = new ApplicationDbContext(options))
+            {
+                var service = new ToDoItemService( context);
+                var fakeUser = new ApplicationUser{ Id= "fake-000", UserName= "fake@example.com"};
+                await service.AddItemAsync(new ToDoItem{ Title="Testing?"}, fakeUser);
+            }
+
+            //SeedData crea otro contexto, para verificar que la base de datos
+            //se halla completado correctamente. 
+            using(var context = new ApplicationDbContext(options))
+            {
+                var itemsInDataBase = await context.Items.CountAsync();
+                Assert.Equal(1, itemsInDataBase);
+                
+                var item = await context.Items.FirstAsync();
+                Assert.Equal("Testing?", item.Title);
+                Assert.Equal(false, item.IsDone);
+                //Assert.True( false == item.IsDone);
+                
+                var difference = DateTimeOffset.Now.AddDays(3)-item.DueAt;
+                Assert.True(difference < TimeSpan.FromSeconds(3));
+            }
+        }
+    }
+}
+
+
+/*
+'Microsoft.EntityFrameworkCore.DbContextOptionsBuilder<AspNetCoreToDo.Data.ApplicationDbContext>' a 
+'Microsoft.EntityFrameworkCore.DbContextOptions       <AspNetCoreToDo.Data.ApplicationDbContext>
+*/
