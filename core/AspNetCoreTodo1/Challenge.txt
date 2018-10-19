@@ -1,0 +1,13 @@
+Todo
+    _Poder modificar la fecha de una tarea a travez de un DatePicker.
+    _Indicar con un cambio de color las tareas que se les expiro el tiempo.
+
+
+Secure, Identity and roles
+    _Agregar un boton para que el administrador pueda eliminar una cuenta de usuario.
+    _Agregar la posibilidad de cambiar la clave.
+    _Que aparezca el ojito cuando se introduce la clave, para verificar que este bien escrita.
+
+
+Test
+    _
