@@ -21,11 +21,14 @@ namespace PersonaProject
     {
         public Persona()
         {
-            Nombre = "No es un nombre valido";
-            DNI = -10000;
+            //Nombre = "No es un nombre valido";
+            Nombre = null;
+            //DNI = -10000;
+            DNI = 0;
+            Celular = null;
         }
 
-        public Persona( string nombre, int dni)
+        public Persona( string nombre, int dni, string celular=null)
         {
             //if (nombre == "")
             //if (nombre == "" || nombre == null)
@@ -33,21 +36,24 @@ namespace PersonaProject
             {
                 throw new PersonaNombreExeption();
             }
-            if(dni == 0)
+            if(dni <= 0)
             {
                 throw new PersonaDNIExeption();
             }
+            this.Nombre = nombre;
+            this.DNI = dni;
 
-            if(Celular.Length !=12 && string.IsNullOrEmpty(Celular))
+            //if(celular.Length !=12 && string.IsNullOrEmpty(celular))
+            if (celular.Length ==12)
+            {
+                this.Celular = celular;
+                //throw new PersonaCelularExeption();
+            }
+            else
             {
                 throw new PersonaCelularExeption();
             }
-
-            
-
-            this.Nombre = nombre;
-            this.DNI = dni;
-            this.Celular = celular;
+            //this.Celular = celular;
         }
 
         public string Nombre { get; set; }
