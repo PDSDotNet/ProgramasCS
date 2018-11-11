@@ -9,12 +9,12 @@ namespace UnitTestProject1
     public class PersonaTest
     {
         /// <summary>
-        /// Test referentes al Nombre
+        /// Tests referentes al Nombre
         /// </summary>
         [TestMethod]
         public void DatoUnNombreValidoSeDebeCrearPersona()
         {
-            var persona = new Persona( "Juanita", 11);
+            var persona = new Persona( "Juanita", 11, "11-2222-3333");
 
             Assert.AreEqual("Juanita", persona.Nombre);
         }
@@ -25,13 +25,13 @@ namespace UnitTestProject1
             Persona persona = new Persona();
             try
             {
-                //persona = new Persona("No es un nombre valido", 11);
-                persona = new Persona( null, 11);
+                persona = new Persona( null, 11, "11-2222-3333");
                 throw new Exception();
             }
             catch (PersonaNombreExeption)
             {
-                Assert.IsNull(persona.Nombre);
+                //Assert.IsNull(persona.Nombre);
+                Assert.AreEqual("No es un nombre valido", persona.Nombre);
             }
             catch (Exception)
             {
@@ -45,13 +45,13 @@ namespace UnitTestProject1
             Persona persona = new Persona();
             try
             {
-                persona = new Persona("", 11);
+                persona = new Persona("", 11, "11-2222-3333");
                 throw new Exception();
             }
             catch (PersonaNombreExeption)
             {
-                Assert.IsNull(persona.Nombre);
-
+                //Assert.IsNull(persona.Nombre);
+                Assert.AreEqual("No es un nombre valido", persona.Nombre);
             }
             catch (Exception)
             {
@@ -60,13 +60,14 @@ namespace UnitTestProject1
         }
 
 
+
         /// <summary>
-        /// Test referentes al DNI
+        /// Tests referentes al DNI
         /// </summary>
         [TestMethod]
         public void DadoDniValidoDebeCrearPersona()
         {
-            var persona = new Persona("Juanita", 22333444);
+            var persona = new Persona("Juanita", 22333444, "11-2222-3333");
 
             Assert.AreEqual(22333444, persona.DNI);
         }
@@ -78,12 +79,12 @@ namespace UnitTestProject1
 
             try
             {
-                persona = new Persona("Juanita", 0);
+                persona = new Persona("Juanita", 0, "11-2222-3333");
                 throw new Exception();
             }
             catch (PersonaDNIExeption)
             {
-                Assert.AreEqual( 0, persona.DNI);
+                Assert.AreEqual( -10000, persona.DNI);
 
             }
             catch (Exception)
@@ -93,17 +94,38 @@ namespace UnitTestProject1
         }
 
 
+
         /// <summary>
-        /// Test referentes al Celular
+        /// Tests referentes al Celular
         /// </summary>
         [TestMethod]
         public void DadoCelularVacioDebeCrearPersona()
         {
-            Persona persona = new Persona("Juanita", 22365365);
+            /*
+            Persona persona = new Persona("Juanita", 22365365, "");
 
             Assert.AreEqual("Juanita", persona.Nombre);
             Assert.AreEqual(22365365, persona.DNI);
             Assert.IsNull( persona.Celular);
+            */
+
+            Persona persona = new Persona();
+
+            try
+            {
+                persona = new Persona("Juanita", 22333444, "");
+                throw new Exception();
+            }
+            catch (PersonaCelularExeption)
+            {
+                Assert.AreEqual("Juanita", persona.Nombre);
+                Assert.AreEqual(22365365, persona.DNI);
+                Assert.AreEqual("No es un nombre valido", persona.Celular);
+            }
+            catch (Exception)
+            {
+                Assert.Fail();
+            }
         }
 
         [TestMethod]
@@ -136,6 +158,8 @@ namespace UnitTestProject1
             }
             catch (PersonaCelularExeption)
             {
+                Assert.AreEqual("Juanita", persona.Nombre);
+                Assert.AreEqual(22365365, persona.DNI);
                 //Assert.AreNotEqual(12, persona.Celular.Length);
                 Assert.IsNull(persona.Celular);
             }

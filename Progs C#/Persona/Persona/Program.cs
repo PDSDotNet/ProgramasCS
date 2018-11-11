@@ -10,7 +10,13 @@ namespace PersonaProject
     {
         static void Main(string[] args)
         {
-
+            /*
+             * PERSONA
+             *  Nombre - obligatorio
+             *  Apellido - obligatorio
+             *  DNI - obligatorio y numérico
+             *  CELULAR - opcional y format NN-NNNN-NNNN
+             */
         }
     }
 
@@ -21,14 +27,14 @@ namespace PersonaProject
     {
         public Persona()
         {
-            //Nombre = "No es un nombre valido";
-            Nombre = null;
-            //DNI = -10000;
-            DNI = 0;
-            Celular = null;
+            Nombre = "No es un nombre valido";
+            //Nombre = null;
+            DNI = -10000;
+            //DNI = 0;
+            Celular = "No es un nombre valido";
         }
 
-        public Persona( string nombre, int dni, string celular=null)
+        public Persona( string nombre, int dni, string celular/*== null*/)
         {
             //if (nombre == "")
             //if (nombre == "" || nombre == null)
@@ -43,8 +49,14 @@ namespace PersonaProject
             this.Nombre = nombre;
             this.DNI = dni;
 
-            //if(celular.Length !=12 && string.IsNullOrEmpty(celular))
-            if (celular.Length ==12)
+            if(celular.Length !=12 && string.IsNullOrEmpty(celular))
+            {
+                throw new PersonaCelularExeption();
+            }
+
+
+            /*
+            if(celular.Length ==12)
             {
                 this.Celular = celular;
                 //throw new PersonaCelularExeption();
@@ -53,7 +65,10 @@ namespace PersonaProject
             {
                 throw new PersonaCelularExeption();
             }
-            //this.Celular = celular;
+            */
+            this.Nombre = nombre;
+            this.DNI = dni;
+            this.Celular = celular;
         }
 
         public string Nombre { get; set; }

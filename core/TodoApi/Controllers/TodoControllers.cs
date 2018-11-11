@@ -75,7 +75,7 @@ namespace TodoApi.Controllers
 
 
         /// <summary>
-        /// Deletes a specific TodoItem.--------------------
+        /// Deletes a specific TodoItem.
         /// </summary>
         /// <param name="id"></param>   
         [HttpDelete("{id}")]
